@@ -3,6 +3,11 @@ const addBtn = document.getElementById("add-btn");
 const todoList = document.getElementById("todo-list");
 
 addBtn.addEventListener("click", addTodo);
+input.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    addTodo();
+  }
+});
 
 function addTodo() {
   const task = input.value.trim();
@@ -13,7 +18,9 @@ function addTodo() {
   }
 
   const li = document.createElement("li");
-  li.textContent = task;
+
+  const taskText = document.createElement("span");
+  taskText.textContent = task;
 
   const deleteBtn = document.createElement("button");
   deleteBtn.textContent = "Delete";
@@ -22,6 +29,7 @@ function addTodo() {
     li.remove();
   });
 
+  li.appendChild(taskText);
   li.appendChild(deleteBtn);
   todoList.appendChild(li);
 
